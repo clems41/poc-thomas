@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="575276e5-2799-408c-b7f8-6ea117dfe153" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/poc-thomas.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/clement.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/maraicher1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/files/maraicher2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/complete_version/config/agents.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/complete_version/config/tasks.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/complete_version/crew.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/database.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/short_version/config/agents.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/short_version/config/tasks.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/poc_thomas/short_version/crew.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2w7Wvv8sYxquYIMTmzqV5iFOSuo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/clemtard/Documents/projects/msv/poc-thomas/src/poc_thomas/complete_version",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/poc_thomas/complete_version" />
+      <recent name="$PROJECT_DIR$/src/config" />
+      <recent name="$PROJECT_DIR$/files" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/poc_thomas/short_version/results" />
+      <recent name="$PROJECT_DIR$/src/poc_thomas/complete_version" />
+      <recent name="$PROJECT_DIR$/src/poc_thomas/short_version" />
+      <recent name="$PROJECT_DIR$/src/poc_thomas/results" />
+      <recent name="$PROJECT_DIR$/src/poc_thomas" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="575276e5-2799-408c-b7f8-6ea117dfe153" name="Changes" comment="" />
+      <created>1745393327028</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745393327028</updated>
+      <workItem from="1745393328054" duration="1383000" />
+      <workItem from="1745396292130" duration="49000" />
+      <workItem from="1745396887850" duration="4095000" />
+      <workItem from="1745483067564" duration="15343000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,23 @@
+[project]
+name = "poc_thomas"
+version = "0.1.0"
+description = "poc-thomas using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.114.0,<1.0.0"
+]
+
+[project.scripts]
+poc_thomas = "poc_thomas.main:run"
+run_crew = "poc_thomas.main:run"
+train = "poc_thomas.main:train"
+replay = "poc_thomas.main:replay"
+test = "poc_thomas.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

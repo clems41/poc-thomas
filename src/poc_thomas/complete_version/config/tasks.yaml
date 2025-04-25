@@ -1,0 +1,183 @@
+transcription_improvement:
+  description: >
+    Lis la transcription suivante et corrige les éventuelles erreurs de transcription, mais sans jamais inventer. Si tu n'es pas sûr, ne fais pas de modifications.
+    Transcription :
+    """
+    {transcription}
+    """
+  expected_output: transcription corrigée sous forme de texte
+  output_file: transcription_improvement.txt
+  agent: transcription_improver
+
+transcription_splitting:
+  description: Lis la transcription et découpe la en paragraphe pour chaque tâche effectuée par le maraîcher. Si certaines tâches se ressemblent, regroupe les dans un même paragraphe.
+  expected_output: texte découpé en plusieurs paragraphes
+  output_file: transcription_splitting.txt
+  context: ["transcription_improvement"]
+  agent: transcription_splitter
+
+tasks_structuration:
+  description: >
+    Lis chaque paragraphe de la transcription. Chaque paragraphe correspond à une tâche effectuée par un maraîcher dans son exploitation.
+    Transforme les actions détectées en un tableau avec les colonnes (nom;format;exemple) : 
+    - Tâche;string;Travail du sol.
+    - Durée en minutes;integer;90.
+    - Nombre de personnes;integer;2.
+    - Parcelle;string;Tunnel2
+    - Culture;string;Tomate
+    - Commentaire;string;La taille a été effectuée en attendant les clients pour la vente
+    Tu dois respecter les règles suivantes :
+    - n'invente jamais rien, si tu n'es pas en mesure de remplir une colonne, laisse la vide.
+    - si le maraîcher indique un temps en heures et minutes, je veux que tu convertisse pour avoir une durée en minutes.
+    - si le nombre de personne n'est pas clairement précisé, écris 1 personne.
+    - pour le champ commentaire, met tout ce que le maraîcher dis à propos de la tâche et qui ne correspond pas à une autre colonne du tableau.
+  expected_output: tableau avec plusieurs lignes et plusieurs colonnes
+  output_file: tasks_structuration.txt
+  context: ["transcription_splitting"]
+  agent: task_refiner
+
+tasks_optimization:
+  description: >
+    Relis et améliore le tableau, complète les colonnes manquantes si possible, homogénéise les formulations à partir de la transcription fournie en entrée, sans jamais inventer de données. 
+    Laisse les colonnes vides si les informations ne sont pas fournies dans la transcription.
+    Assures toi que les durées en minutes correspondent bien au temps indiqués dans la transcription.
+    Transcription :
+    """
+    {transcription}
+    """
+  expected_output: tableau avec plusieurs lignes et plusieurs colonnes
+  output_file: tasks_optimization.txt
+  context: ["tasks_structuration"]
+  agent: task_optimizer
+
+tasks_finalization_activites:
+  description: >
+    Reprend le tableau en faisant correspondre la colonne 'Tâche' avec une liste pré-définies de choix.
+    Pour chaque élément de la liste, tu as une liste de mots-clés fournis qui peuvent t'aider à faire correspondre la tâche avec un élément de la liste pré-définie.
+    Voici la liste des éléments pré-définis (nom;mots-clés séparés par une virgule) :
+    - Production de plant;semis,pépinière,jeunes plants,rempotage,bouturage
+    - Travail du sol;préparation sol,labour,motoculteur,rotavateur,grelinette,Actisol,Canadien,tracteur,outil,engin
+    - Apport de MO (Amender);compost,fumier,amendement,apport,mo,matière,organique,broyat,épandeur,tracteur,brouette,rateau
+    - Fertilisation;engrais,nutriments,sol,apport,granulé,NPK,azote,oligo,oligoéléments,lisier
+    - Paillage;paille,mulch,BRF,Broyat,couvrir
+    - Bâchage;bâche,occultation,désherbage,plastique,tissée,enterrer
+    - Semis direct;graines,ligne,plantation,volée,semoir,en place,monorang,multirang
+    - Plantation;plants,repiquage,cultures,implantation,motte,jeune plant,godets
+    - Gestion climatique;serre,température,ventilation,voilage,voile,thermique,ouvrant,moteur,portes
+    - Gestion des bioagresseurs;insectes,maladies,traitements,phyto,sanitaire,lutte,filets,pulvériser,mélange,dose,
+    - Irrigation;arrosage,goutte,eau,tuyau,aspersion,planifier
+    - Désherbage;mauvaises,herbes,sarclage,binage,manuel,mechanique,pulvériser,
+    - Taille;élagage,coupe,entretien,forme,égourmandage,effeuillage,étêtage
+    - Palissage;ficelle,tuteur,support,dérouler
+    - Destruction de culture;arrachage,broyage,rouage,nettoyage,
+    - Suivi de culture;observation,croissance,planning,plannification,tour du champ,tour,regarder,checker
+    - Récolte;cueillette,maturité,rendement,poids,caisse,retirer,bottes
+    - Nettoyage;outils,matériel,hygiène,propreté,parer,parage,nettoyeuse,laver,lavage,station,lavabo,process,eau,passe à l'eau,enlever,terre
+    - Livrer;transport,distribution,clients,camion,fourgon,livraison,apporter,donner
+    - Stockage;chambre,froide,entrepôt,conservation,logistique,mise en caisse,emballage
+    - Charger / Décharger;logistique,palettes,livraison,chercher
+    - Communiquer;réseaux,sociaux,clients,marketing,emails,courriers,presse,interview,radio,mail,mailling,list,whatsapp,message
+    - Marché;stand,vente,dépot,préparer
+    - Vente directe;client,ferme,circuit,court,ferme,place,sur
+    - Panier AMAP;abonnement,distribution,consommateurs,commandes
+    - Gestion des stocks;inventaire,produits,suivi,logistique
+    - Préparation de commande;tri,pesée,conditionnement,cagettes,paniers,liste
+    - Comptabilité;bilan,facturation,gestion,impôts
+    - Administratif;papier,déclarations,dossiers,impôts
+    - Planifier;agenda,planning,tâches,plannification,calendrier,rotation,assolement
+    - Veille;informations,réglementations,tendances
+    - Achat / Commande;fournisseurs,approvisionnement,matériel
+    - Ranger;outils,local,organisation,ordre,classer
+    - Accueil du public;visite,communication,pédagogie
+    - Réparer;bricolage,maintenance,outils
+    - Construire;bâtiment,abri,bricolage,serre,outils,aménagements
+    - Aménager;organisation,espace,infrastructure
+    - Entretenir;propreté,maintenance,suivi,tailler,élaguer
+    - Formation;apprentissage,stage,cours,études
+    - Accompagnement;pédagogie,conseil,suivi,aide
+    - Production de compost;déchets,fertilité,mo,matière,organique
+    - Gestion des intrants;engrais,semences,stockage,mo,matière,organique,brf,essence,gasoil,phyto,produits,voiles
+    - Réunions;équipe,planning,communication,discussions,rencontres
+    - Volailles;poules,œufs,élevage,viande
+    - Floriculture;fleurs,décoration,culture,bouquet
+    - Brassiculture;bière,brassage,fermentation
+    - Apiculture;abeilles,miel,ruche
+    - Champignons;myciculture,substrat,cave
+    - Boissons;jus,sirop,fermentation,alccol
+    - Conserves;transformation,bocaux,stérilisation
+    - Boulangerie;pain,four,farine
+    - Verger;arbres,fruits,taille
+    - Semences;graines,reproduction,sélection,production
+    - Atelier pédagogique;scolaire,animation,formation
+    - Auxiliaires de culture;insectes,utiles,lutte,biologique,biodiversité
+    - Transformation;atelier,produits,agroalimentaire,conserves
+    - Activités syndicales;syndicat,agriculture,droits,FNSEA,Conf,JA,Jeunes agriculteurs
+    Quelques règles à respecter :
+    - si tu n'arrives à trouver de correspondance, supprimes la ligne du tableau
+  expected_output: tableau avec plusieurs lignes et plusieurs colonnes
+  output_file: tasks_finalization_activites.txt
+  context: ["tasks_optimization"]
+  agent: task_finalizer
+
+tasks_finalization_culture:
+  description: >
+    Reprend le tableau en faisant correspondre la colonne 'Culture' avec une liste pré-définies de choix :
+    - Ail
+    - Artichaut
+    - Asperge
+    - Aubergine
+    - Betterave
+    - Blette
+    - Brocoli
+    - Butternut
+    - Carotte
+    - Chou chinois
+    - Chou frisé
+    - Chou kale
+    - Chou rouge
+    - Chou-fleur
+    - Concombre
+    - Courge musquée
+    - Courge spaghetti
+    - Courgette
+    - Céleri branche
+    - Céleri-rave
+    - Endive
+    - Fenouil
+    - Haricot vert
+    - Laitue
+    - Manioc
+    - Melon
+    - Mâche
+    - Navet
+    - Oignon
+    - Panais
+    - Pastèque
+    - Patate douce
+    - Patidou
+    - Piment
+    - Poireau
+    - Poivron
+    - Pomme de terre
+    - Potimarron
+    - Potiron
+    - Pâtisson
+    - Radis
+    - Roquette
+    - Tomate
+    - Épinard
+    - Engrais verts
+    - Fleurs
+    Quelques règles à respecter :
+    - si tu n'arrives à faire correspondre, laisse la colonne vide.
+  expected_output: >
+    Un tableau sous la forme d'un fichier CSV avec comme première ligne un entête. Les colones (nom;format;exemple) à reprendre sont :
+    - Tâche;string;Travail du sol
+    - Durée en minutes;integer;90
+    - Nombre de personnes;integer;2
+    - Parcelle;string;Tunnel2
+    - Culture;string;Tomate
+    - Commentaire;string;La taille a été effectuée en attendant les clients pour la vente
+  output_file: result.csv
+  context: ["tasks_finalization_activites"]
+  agent: task_finalizer

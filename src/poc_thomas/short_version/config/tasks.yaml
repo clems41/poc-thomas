@@ -1,0 +1,63 @@
+transcription_improvement:
+  description: >
+    Lis la transcription suivante et ajoute de la ponctuation pour faire des phrases complètes, ponctuées et grammaticalement correctes.
+    Si tu n'es pas sûr, ne fais pas de modifications.
+    Transcription :
+    """
+    {transcription}
+    """
+  expected_output: transcription corrigée sous forme de texte avec des phrases grammaticalement correctes.
+  output_file: transcription_improvement.txt
+  agent: transcription_improver
+
+transcription_to_tasks:
+  description: >
+    Lis la transcription ci-dessous et découpe la en paragraphe pour chaque tâche effectuée par le maraîcher. Si certaines tâches se ressemblent, regroupe les dans un même paragraphe.
+    Pour chaque paragraphe, transforme les actions effectuées en un tableau avec les colonnes suivantes se lon le schéma 'nom;format;exemple' : 
+    - Activité;string;Travail du sol.
+    - Durée en minutes;integer;90.
+    - Nombre de personnes;integer;2.
+    - Parcelle;string;Tunnel2
+    - Culture;string;Tomate
+    - Commentaire;string;La taille a été effectuée en attendant les clients pour la vente
+    
+    **Règles générales :**
+    Tu dois respecter les règles suivantes :   
+    - Si une info est manquante → laisser vide.
+    - Si la durée n'est pas précisée → laisser vide.
+    - Si le nombre de personne n’est pas spécifié considère qu’il y a 1 personne.
+    - Détecter les corrections ("non en fait c'était 1h" → 60).
+    - Il t’est interdit de combler les informations manquantes. 
+    - si le maraîcher indique un temps en heures et minutes, je veux que tu convertisse pour avoir une durée en minutes.
+    - pour le champ commentaire, met tout ce que le maraîcher dis à propos de la tâche et qui ne correspond pas à une autre colonne du tableau.
+    - la colonne 'Parcelle' correspond à une zone sur l'exploitation du maraîcher, ce n'est donc pas un nom de ville ou autre. Ca ressemble par exemple à 'Tunnel2'.
+    - pour la colonne 'Activité', tu dois faire correspondre la tâche effectuée avec un élément prédéfini d'une liste selon les règle précisées ci-dessous 'Règles pour la colonne Activité'.
+    - pour la colonne 'Culture', tu dois faire correspondre la culture identifiée avec un élément prédéfini d'une liste selon les règle précisées ci-dessous 'Règles pour la colonne Culture'.
+    
+    **Règles pour la colonne Activité :**
+    Pour chaque élément de la liste, tu as une liste de mots-clés fournis qui peuvent t'aider à faire correspondre la tâche avec un élément de la liste pré-définie.
+    Si tu ne trouves de correspondance, supprime la ligne du tableau pour la tâche concernée.
+    Voici la liste des éléments pré-définis (id;nom;mots-clés séparés par une virgule) :
+    {activites}
+    
+    **Règles pour la colonne Culture :**
+    Si tu ne trouves de correspondance, laisse la colonne vide.
+    Voici la liste des éléments pré-définis (id;nom) :
+    {cultures}
+    
+    **Début Transcription**
+    {transcription}
+    **Fin Transcription**
+  expected_output: >
+    Un tableau sous la forme d'un fichier CSV avec comme première ligne un entête. Les colonnes doivent respecter le format suivant : 'nom;format;exemple'.
+    Voici la liste des colonnes :
+    - Tâche;string;Travail du sol
+    - Durée en minutes;integer;90
+    - Nombre de personnes;integer;2
+    - Parcelle;string;Tunnel2
+    - Culture;string;Tomate
+    - Commentaire;string;La taille a été effectuée en attendant les clients pour la vente
+    Le tableau fourni doit être en français.
+  output_file: result.csv
+  context: ["transcription_improvement"]
+  agent: task_manager
