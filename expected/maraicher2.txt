@@ -1,5 +1,5 @@
-Construction | 300
-Volailles | 20+45
+Construction | 270
+Volailles | 80+45
 Récolter | 30
 Vente |
 Tailler | | buissons de sureau

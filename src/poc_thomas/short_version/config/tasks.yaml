@@ -29,17 +29,19 @@ transcription_to_tasks:
     Prends comme point de départ le résultat de la tâche précédente.
     
     Tu dois analyser un texte composé de plusieurs paragraphes, chacun représentant une action réalisée dans une journée par un maraîcher. Ton objectif est de transformer chaque paragraphe en une tâche structurée contenant les champs suivants :
-    1. **activite** (obligatoire si identifiable) : nom de l'activité correspondante à la tâche. Elle doit être choisie uniquement parmi la liste suivante : {activites}
-    2. **duree_minutes** (en minutes) : extraire la durée mentionnée dans le paragraphe si elle est indiquée (ex. "1h20" = 80 minutes). Si plusieurs durées sont mentionnées, choisir celle correspondant à l’action principale décrite.
-    3. **parcelles** : indiquer la localisation précise de l’action si elle est mentionnée (nom de serre, planche, parcelle, champ, etc.). L'action peut être effectuée sur plusieurs zones. Chaque zone doit être indiquée, séparées par une virgule.
-    4. **culture** : nom de la culture si identifiable (sinon ''). Elle doit être choisie, uniquement parmi la liste suivante : {cultures}
-    5. **quantite_recoltee** : extraire une quantité récoltée, si précisée
-    6. **commentaire** : résumé libre de la tâche, uniquement si l’information ne correspond à aucun autre champ (par exemple, contexte, météo, outils utilisés, impressions, etc.). Ne pas dupliquer d’informations déjà classées dans un champ ci-dessus.
+    1. **activite** (obligatoire si identifiable) : nom de l'activité correspondante à la tâche. Elle doit être choisie uniquement parmi la liste suivante (une seule activité doit être choisie) : {activites}
+    2. **duree_minutes** (en minutes, exemple : "1h20" = 80 minutes) : extraire la durée mentionnée dans le paragraphe si elle est indiquée (sinon 0). Si plusieurs durées sont mentionnées, choisir celle correspondant à l’action principale décrite.
+    3. **parcelles** : indiquer la localisation précise de l’action si elle est mentionnée (sinon []). La parcelle peut être de différents types : serre, planche, parcelle, champ, zone, etc.). L'action peut être effectuée sur plusieurs parcelles. Chaque parcelle doit être indiquée, séparées par une virgule.
+    4. **cultures** : liste de noms de culture si identifiable (sinon []). Chaque nom doit être choisi uniquement parmi la liste suivante : {cultures}
+    5. **commentaire** : résumé libre de la tâche, uniquement si l’information ne correspond à aucun autre champ (par exemple, contexte, météo, outils utilisés, impressions, etc.). Ne pas dupliquer d’informations déjà classées dans un champ ci-dessus.
     
     **Contraintes importantes :**
     - Tous les champs doivent être présents pour chaque tâche, même s’ils sont vides.
     - Si une information n’est pas clairement identifiable dans le paragraphe, laisse le champ vide.
     - Le format de sortie attendu est une liste de dictionnaires JSON, un par paragraphe analysé.
+    - Ne crée pas de tâche dans le fichier JSON si tu n'arrives pas à identifier le champ 'activite'.
+    - Si plusieurs activités correspondent à un paragraphe, choisis celle qui te paraît la plus pertinente par rapport à ce qui est dit dans le paragraphe en question. Un paragraphe ne doit donner qu'un seul objet dans la liste finale du fichier JSON.
+    - N'ajoute qu'une seule culture par nom donné par le maraîcher dans la transcription. Par exemple, si le maraîcher parle de 'choux', prends un type de chou de la liste et un seul, n'ajoute pas tous les choux que tu trouves dans la liste des cultures.
 
   expected_output: >
     Une liste de tâches au format JSON ou tableau, avec les champs mentionnés pour chaque paragraphe du texte. Le fichier généré doit être écrit exclusivement en français.
@@ -49,16 +51,14 @@ transcription_to_tasks:
         "activite": "Récolte",
         "duree_minutes": 120,
         "parcelles": ["serre 2", "tunnel 1"],
-        "culture": "Courge musquée",
-        "quantite_recoltee": 12
+        "culture": ["Courge musquée", "Concombre"],
         "commentaire": "Réparation d'un parterre en utilisant du mortier et du béton."
       },
       {
         "activite": "Charger / Décharger",
         "duree_minutes": 25,
         "parcelles": [],
-        "culture": "",
-        "quantite_recoltee": 0
+        "culture": [],
         "commentaire": ""
       }
     ]
