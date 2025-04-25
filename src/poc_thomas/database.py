@@ -23,10 +23,12 @@ class DatabaseManager:
             print("Erreur lors de la connexion ou de la requête :", e)
 
     def get_cultures(self):
-        return self._run_query("SELECT id,nom FROM base_culture;")
+        result = self._run_query("SELECT nom FROM base_culture;")
+        return ','.join([e[0] for e in result])
 
     def get_activites(self):
-        return self._run_query("SELECT id,nom,mots_cles FROM base_activite;")
+        result = self._run_query("SELECT nom FROM base_activite;")
+        return ','.join([e[0] for e in result])
 
     def _run_query(self, query):
         # Connexion à la base
