@@ -11,6 +11,7 @@ def run_crew(filename: str):
     db_manager = DatabaseManager()
     cultures = db_manager.get_cultures()
     activites = db_manager.get_activites()
+    unites = db_manager.get_unites()
 
     # TRANSCRIPTION
     transcriptor = Transcriptor()
@@ -23,6 +24,7 @@ def run_crew(filename: str):
         'transcription': transcription,
         'cultures': str(cultures),
         'activites': str(activites),
+        'unites': str(unites),
         "filename": filename
     }
 

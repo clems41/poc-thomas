@@ -30,6 +30,10 @@ class DatabaseManager:
         result = self._run_query("SELECT nom FROM base_activite;")
         return ','.join([e[0] for e in result])
 
+    def get_unites(self):
+        result = self._run_query("SELECT nom FROM base_unite;")
+        return ','.join([e[0] for e in result])
+
     def _run_query(self, query):
         # Connexion à la base
         conn = psycopg2.connect(**self.config)

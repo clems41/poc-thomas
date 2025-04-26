@@ -29,10 +29,12 @@ transcription_to_tasks:
     Prends comme point de départ le résultat de la tâche précédente.
     
     Tu dois analyser un texte composé de plusieurs paragraphes, chacun représentant une action réalisée dans une journée par un maraîcher. Ton objectif est de transformer chaque paragraphe en une tâche structurée contenant les champs suivants :
-    1. **activite** (obligatoire si identifiable) : nom de l'activité correspondante à la tâche. Elle doit être choisie uniquement parmi la liste suivante (une seule activité doit être choisie) : {activites}
+    1. **activite** (obligatoire si identifiable) : nom de l'activité correspondante à la tâche. Elle doit être choisie uniquement parmi la liste suivante (une seule activité doit être choisie) : {activites}.
     2. **duree_minutes** (en minutes, exemple : "1h20" = 80 minutes) : extraire la durée mentionnée dans le paragraphe si elle est indiquée (sinon 0). Si plusieurs durées sont mentionnées, choisir celle correspondant à l’action principale décrite.
     3. **parcelles** : indiquer la localisation précise de l’action si elle est mentionnée (sinon []). La parcelle peut être de différents types : serre, planche, parcelle, champ, zone, etc.). L'action peut être effectuée sur plusieurs parcelles. Chaque parcelle doit être indiquée, séparées par une virgule.
-    4. **cultures** : liste de noms de culture si identifiable (sinon []). Chaque nom doit être choisi uniquement parmi la liste suivante : {cultures}
+    4. **cultures** : liste de noms de culture si identifiable (sinon []). Chaque nom doit être choisi uniquement parmi la liste suivante : {cultures}.
+    5. **quantite** : identifie si une quantité est citée (nombre uniquement, 0 si non précisé). Cette quantité doit être en lien avec la tâche réalisée (exemple : 5kg = 5, 12,5 litres = 12.5). 
+    5. **unite** : identifie si une unité est précisée avec le champ 'quantite' (sinon ''). Cette unité doit être choisie uniquement parmi la liste suivante (une seule unité doit être choisie) : {unites}.
     5. **commentaire** : résumé libre de la tâche, uniquement si l’information ne correspond à aucun autre champ (par exemple, contexte, météo, outils utilisés, impressions, etc.). Ne pas dupliquer d’informations déjà classées dans un champ ci-dessus.
     
     **Contraintes importantes :**
@@ -40,6 +42,8 @@ transcription_to_tasks:
     - Si une information n’est pas clairement identifiable dans le paragraphe, laisse le champ vide.
     - Le format de sortie attendu est une liste de dictionnaires JSON, un par paragraphe analysé.
     - Ne crée pas de tâche dans le fichier JSON si tu n'arrives pas à identifier le champ 'activite'.
+    - Détecter les corrections de durée ("non en fait c'était 1h" → 60 minutes).
+    - Il t’est interdit de combler les informations manquantes. 
     - Si plusieurs activités correspondent à un paragraphe, choisis celle qui te paraît la plus pertinente par rapport à ce qui est dit dans le paragraphe en question. Un paragraphe ne doit donner qu'un seul objet dans la liste finale du fichier JSON.
     - N'ajoute qu'une seule culture par nom donné par le maraîcher dans la transcription. Par exemple, si le maraîcher parle de 'choux', prends un type de chou de la liste et un seul, n'ajoute pas tous les choux que tu trouves dans la liste des cultures.
 
@@ -51,14 +55,27 @@ transcription_to_tasks:
         "activite": "Récolte",
         "duree_minutes": 120,
         "parcelles": ["serre 2", "tunnel 1"],
-        "culture": ["Courge musquée", "Concombre"],
-        "commentaire": "Réparation d'un parterre en utilisant du mortier et du béton."
+        "quantite": 120,
+        "unite": "kg",
+        "cultures": ["Courge musquée", "Concombre"],
+        "commentaire": "Désherbage pendant la récolte et discussion avec le voisin."
       },
       {
         "activite": "Charger / Décharger",
         "duree_minutes": 25,
         "parcelles": [],
-        "culture": [],
+        "cultures": ["Courgette"],
+        "quantite": 3,
+        "unite": "caisses",
+        "commentaire": "Chargement des commandes AMAP."
+      },
+      {
+        "activite": "Accueil du public",
+        "duree_minutes": 60,
+        "parcelles": [],
+        "cultures": [],
+        "quantite": 0,
+        "unite": "",
         "commentaire": ""
       }
     ]
