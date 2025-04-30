@@ -1,5 +1,6 @@
 import os
 
+import yaml
 from crewai import Agent, Crew, Process, Task, LLM
 from crewai.project import CrewBase, agent, crew, task
 from crewai.agents.agent_builder.base_agent import BaseAgent
@@ -13,7 +14,7 @@ llm = LLM(
 )
 
 @CrewBase
-class ShortVersionCrew():
+class ShortVersionCrew:
 	"""LatestAiDevelopment crew"""
 	agents: List[BaseAgent]
 	tasks: List[Task]
@@ -22,7 +23,6 @@ class ShortVersionCrew():
 		self.filename = filename
 		self.output_directory = output_directory
 		self.final_file_path = None
-		print("Output directory : {}".format(self.output_directory))
 		super().__init__()
 
 	@agent
@@ -44,7 +44,6 @@ class ShortVersionCrew():
 	@task
 	def transcription_improvement(self) -> Task:
 		output_file = os.path.join(self.output_directory, "2_" + self.filename + "_transcription_improved.txt")
-		print("Transcription improvement output file : {}".format(output_file))
 		return Task(
 			config=self.tasks_config['transcription_improvement'],
 			output_file="/" + output_file
@@ -53,7 +52,6 @@ class ShortVersionCrew():
 	@task
 	def transcription_to_tasks(self) -> Task:
 		output_file = os.path.join(self.output_directory, "3_" + self.filename + "_final.json")
-		print("Transcription to tasks output file : {}".format(output_file))
 		self.final_file_path = output_file
 		return Task(
 			config=self.tasks_config['transcription_to_tasks'],

@@ -191,3 +191,5 @@ fabric.properties
 
 expected/
 *.mp3
+*.txt
+*.json

@@ -28,10 +28,6 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get install -y ffmpeg
 
-RUN useradd -m -r appuser && \
-   mkdir /app && \
-   chown -R appuser /app
-
 # Copy the Python dependencies from the builder stage
 COPY --from=builder /usr/local/lib/python3.12/site-packages/ /usr/local/lib/python3.12/site-packages/
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
@@ -39,22 +35,15 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 # Set the working directory
 WORKDIR /app
 
-# Create directory to store Whisper models
-RUN mkdir /app/whisper/ && \
-   chown -R appuser /app/whisper/
-
 # Copy application code
-COPY --chown=appuser:appuser . .
+COPY . .
 
 # Set environment variables to optimize Python
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Switch to non-root user
-USER appuser
-
 # Expose the application port
 EXPOSE 8000
 
 # Start the application using Gunicorn
-CMD ["python", "src/poc_thomas/main.py"]
+CMD ["python", "src/main.py"]

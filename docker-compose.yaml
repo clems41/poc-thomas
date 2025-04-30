@@ -5,8 +5,10 @@ services:
     container_name: thomas-poc
     environment:
       WHISPER_MODEL_DIRECTORY: /app/whisper/
+      INPUT_DIRECTORY: /input
+      OUTPUT_DIRECTORY: /output
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY}
     volumes:
-      - whisper_models:/app/whisper/
-
-volumes:
-  whisper_models:
+      - ./models:/app/whisper/
+      - ./input:/input
+      - ./output:/output

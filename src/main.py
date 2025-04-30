@@ -1,11 +1,12 @@
 import os
+import pathlib
 from datetime import datetime
 from os.path import isfile
 
-from poc_thomas.short_version.crew import ShortVersionCrew
-from poc_thomas.transcriptor import Transcriptor
+from crew import ShortVersionCrew
+from transcriptor import Transcriptor
 
-def run_crew(filename: str, filepath: str, output_directory: str):
+def run_crew(filename: str, filepath: str, output_directory: str, whisper_model_directory: str):
     print("----------------------------   {}    ----------------------------".format(filename))
     filename_without_extension = filename.replace(".mp3", "")
     crew = ShortVersionCrew(filename=filename_without_extension, output_directory=output_directory)
@@ -15,7 +16,7 @@ def run_crew(filename: str, filepath: str, output_directory: str):
     unites = "kg,pièces,bottes,plants,caisses,m²,mètres,hectares,pots,terrines,plaques,paniers,godets,litres,lignes"
 
     # TRANSCRIPTION
-    transcriptor = Transcriptor(model_path=output_directory)
+    transcriptor = Transcriptor(model_path=whisper_model_directory)
     transcription = transcriptor.transcribe(filepath)
     with open(os.path.join(output_directory, "1_" + filename_without_extension + "_transcription.txt"), "w") as text_file:
         text_file.write(transcription)
@@ -42,8 +43,8 @@ def run_crew(filename: str, filepath: str, output_directory: str):
         filedata = file.read()
 
     # Replace the target string
-    filedata = filedata.replace('```json', '')
-    filedata = filedata.replace('```', '')
+    filedata = filedata.replace('```json\n', '')
+    filedata = filedata.replace('\n```', '')
 
     # Write the file out again
     with open(crew.final_file_path, 'w') as file:
@@ -53,12 +54,16 @@ def main():
     """
     Run the crew.
     """
-    input_directory = os.path.abspath(os.path.join(os.getcwd(), "../../input/"))
-    output_directory = os.path.abspath(os.path.join(os.getcwd(), "../../output/"))
+    input_directory_default = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../input/"))
+    output_directory_default = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../output/"))
+    whisper_model_directory_default = os.path.abspath(os.path.join(os.path.abspath(__file__), "../../models/"))
+    input_directory = os.getenv("INPUT_DIRECTORY", input_directory_default)
+    output_directory = os.getenv("OUTPUT_DIRECTORY", output_directory_default)
+    whisper_model_directory = os.getenv("WHISPER_MODEL_DIRECTORY", whisper_model_directory_default)
     # loop over all files in 'input' directory
     for file in os.listdir(input_directory):
         if isfile(os.path.join(input_directory, file)):
-            run_crew(file, os.path.join(input_directory, file), output_directory)
+            run_crew(file, os.path.join(input_directory, file), output_directory, whisper_model_directory)
 
 if __name__ == '__main__':
     main()
