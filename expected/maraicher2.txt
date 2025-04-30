@@ -1,8 +1,0 @@
-Construction | 270
-Volailles | 80+45
-Récolter | 30
-Vente |
-Tailler | | buissons de sureau
-Tailler | | rosiers
-Tailler | | buissons de baies de goji
-Administratif | 60

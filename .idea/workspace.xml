@@ -4,7 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="575276e5-2799-408c-b7f8-6ea117dfe153" name="Changes" comment="[FEAT] config: update config" />
+    <list default="true" id="575276e5-2799-408c-b7f8-6ea117dfe153" name="Changes" comment="[FEAT] taches: update with last tache model">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/250324Baptiste.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/250324Clara.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/250325OlivierBenhamou.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/250326Baptiste1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/250326virginie.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/expected/maraicher2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/250324Baptiste.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/input/250324Baptiste.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/250324Clara.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/250325OlivierBenhamou.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/250326Baptiste1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/250326virginie.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/maraicher1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/maraicher2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge/user_preference.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poc_thomas/database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poc_thomas/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/poc_thomas/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poc_thomas/short_version/crew.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/poc_thomas/short_version/crew.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poc_thomas/transcriptor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/poc_thomas/transcriptor.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,13 +67,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yaml.api: Compose Deployment.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.Run Crew.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/clemtard/Documents/projects/msv/poc-thomas/files",
+    "last_opened_file_path": "/home/clemtard/Documents/projects/msv/poc-thomas",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,6 +90,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/files" />
       <recent name="$PROJECT_DIR$/src/poc_thomas/complete_version" />
       <recent name="$PROJECT_DIR$/src/config" />
@@ -75,6 +102,32 @@
       <recent name="$PROJECT_DIR$/src/poc_thomas/results" />
       <recent name="$PROJECT_DIR$/src/poc_thomas" />
     </key>
+  </component>
+  <component name="RunManager" selected="Python.Run Crew">
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.api: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="api" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yaml.api: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -97,6 +150,13 @@
       <workItem from="1745483067564" duration="15343000" />
       <workItem from="1745573922680" duration="10742000" />
       <workItem from="1745585371859" duration="10467000" />
+      <workItem from="1745657232458" duration="2105000" />
+      <workItem from="1745826093005" duration="35000" />
+      <workItem from="1745848312371" duration="907000" />
+      <workItem from="1745862065127" duration="5000" />
+      <workItem from="1745916539745" duration="10000" />
+      <workItem from="1745917188966" duration="3011000" />
+      <workItem from="1746005047038" duration="2742000" />
     </task>
     <task id="LOCAL-00001" summary="[FEAT] init: first commit">
       <option name="closed" value="true" />
@@ -130,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745598193454</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[FEAT] taches: update with last tache model">
+      <option name="closed" value="true" />
+      <created>1745658706550</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745658706550</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,10 +209,11 @@
     <MESSAGE value="[FEAT] analyse: make full pipeline working with only 2 agents + whisper local" />
     <MESSAGE value="[CHORE] requirements: add requirements file" />
     <MESSAGE value="[FEAT] config: update config" />
-    <option name="LAST_COMMIT_MESSAGE" value="[FEAT] config: update config" />
+    <MESSAGE value="[FEAT] taches: update with last tache model" />
+    <option name="LAST_COMMIT_MESSAGE" value="[FEAT] taches: update with last tache model" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/poc_thomas$Run_Crew.coverage" NAME="Run Crew Coverage Results" MODIFIED="1745596964679" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/poc_thomas" />
+    <SUITE FILE_PATH="coverage/poc_thomas$Run_Crew.coverage" NAME="Run Crew Coverage Results" MODIFIED="1746010326058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/poc_thomas" />
     <SUITE FILE_PATH="coverage/poc_thomas$main.coverage" NAME="Run Crew Coverage Results" MODIFIED="1745584965058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/poc_thomas" />
   </component>
 </project>

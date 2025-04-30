@@ -143,7 +143,6 @@ pdfminer.six==20250327
 pdfplumber==0.11.6
 pexpect==4.9.0
 pillow==11.2.1
--e git+https://github.com/clems41/poc-thomas.git@d6f7596e2fa1dece7fb2868969417192aac9d08f#egg=poc_thomas
 portalocker==2.10.1
 posthog==3.25.0
 prompt_toolkit==3.0.51

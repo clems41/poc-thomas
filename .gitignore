@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
-# Byte-compiled / optimized / DLL files
+# Byte-compiled / optimized / DLL input
 __pycache__/
 *.py[cod]
 *$py.class
@@ -27,7 +27,7 @@ var/
 *.egg
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
+#  Usually these input are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
@@ -116,10 +116,10 @@ pip-selfcheck.json
 # AWS User-specific
 .idea/**/aws.xml
 
-# Generated files
+# Generated input
 .idea/**/contentModel.xml
 
-# Sensitive or high-churn files
+# Sensitive or high-churn input
 .idea/**/dataSources/
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
@@ -133,7 +133,7 @@ pip-selfcheck.json
 .idea/**/libraries
 
 # Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
+# When using Gradle or Maven with auto-import, you should exclude module input,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 # .idea/artifacts
@@ -182,6 +182,12 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 # idea folder, uncomment if you don't need it
-.idea
+.idea/
 
 **/results/**
+
+# Wisper models
+*.pt
+
+expected/
+*.mp3

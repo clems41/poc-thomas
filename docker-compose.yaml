@@ -1,0 +1,12 @@
+services:
+
+  thomas-poc:
+    build: .
+    container_name: thomas-poc
+    environment:
+      WHISPER_MODEL_DIRECTORY: /app/whisper/
+    volumes:
+      - whisper_models:/app/whisper/
+
+volumes:
+  whisper_models:

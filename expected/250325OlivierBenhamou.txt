@@ -1,8 +1,0 @@
-- plantation 200 plants navet 30 minutes
-- récolte amapien 30 minutes
-- entretien poules 20 minutes
-- plantation 200 plants chou rave 45 minutes
-- plantation 100 plants radis noir rond 45 minutes
-- 1h route aller chercher plants
-- 1h30 admin (démarchages etc)
-- 1h30 remise des paniers et désherbage
