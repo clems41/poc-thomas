@@ -45,5 +45,5 @@ ENV PYTHONUNBUFFERED=1
 # Expose the application port
 EXPOSE 8000
 
-# Start the application using Gunicorn
+# Start the application
 CMD ["python", "src/main.py"]

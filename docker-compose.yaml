@@ -1,7 +1,11 @@
 services:
 
   thomas-poc:
-    build: .
+    image: thomas-poc:0.1.0
+    build:
+      dockerfile: Dockerfile
+      tags:
+        - thomas-poc:0.1.0
     container_name: thomas-poc
     environment:
       WHISPER_MODEL_DIRECTORY: /app/whisper/
