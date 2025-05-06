@@ -1,25 +1,29 @@
 import os
-import pathlib
 from datetime import datetime
 from os.path import isfile
 
 from crew import ShortVersionCrew
 from transcriptor import Transcriptor
 
-def run_crew(filename: str, filepath: str, output_directory: str, whisper_model_directory: str):
+
+def run_crew(filename: str, filepath: str, output_directory: str, whisper_model_directory: str, transcribe: bool):
     print("----------------------------   {}    ----------------------------".format(filename))
-    filename_without_extension = filename.replace(".mp3", "")
+    filename_without_extension = filename.replace(".mp3", "").replace(".txt", "")
     crew = ShortVersionCrew(filename=filename_without_extension, output_directory=output_directory)
     # CONFIG
-    cultures = "Ail,Artichaut,Asperge,Aubergine,Betterave,Blette,Brocoli,Butternut,Carotte,Chou chinois,Chou frisé,Chou kale,Chou rouge,Chou-fleur,Concombre,Courge musquée,Courge spaghetti,Courgette,Céleri branche,Céleri-rave,Endive,Fenouil,Haricot vert,Laitue,Manioc,Melon,Mâche,Navet,Oignon,Panais,Pastèque,Patate douce,Patidou,Piment,Poireau,Poivron,Pomme de terre,Potimarron,Potiron,Pâtisson,Radis,Roquette,Tomate,Épinard,Engrais verts,Fleurs,Radis noir,Chou-rave"
+    cultures = "Ail,Artichaut,Asperge,Aubergine,Betterave,Blette,Brocoli,Butternut,Carotte,Chou chinois,Chou frisé,Chou kale,Chou rouge,Chou-fleur,Concombre,Courge musquée,Courge spaghetti,Courgette,Céleri branche,Céleri-rave,Endive,Fenouil,Haricot vert,Laitue,Manioc,Melon,Mâche,Navet,Oignon,Panais,Pastèque,Patate douce,Patidou,Piment,Poireau,Poivron,Pomme de terre,Potimarron,Potiron,Pâtisson,Radis,Roquette,Tomate,Épinard,Engrais verts,Fleurs,Radis noir,Chou-rave,Salade,Mesclun"
     activites = "Production de plant,Travail du sol,Apport de MO (Amender),Fertilisation,Paillage,Bâchage,Semis direct,Plantation,Gestion climatique,Gestion des bioagresseurs,Irrigation,Désherbage,Taille,Palissage,Destruction de culture,Suivi de culture,Récolte,Nettoyage,Livrer,Stockage,Charger / Décharger,Communication / Marketing,Marché,Vente directe,Panier AMAP,Gestion des stocks,Préparation de commande,Comptabilité,Administratif,Planifier,Veille,Achat / Commande,Ranger,Accueil du public,Réparer,Construire,Aménager,Entretenir,Formation,Accompagnement,Production de compost,Gestion des intrants,Réunions,Volailles,Floriculture,Brassiculture,Apiculture,Champignons,Boissons,Conserves,Boulangerie,Verger,Semences,Atelier pédagogique,Auxiliaires de culture,Transformation,Activités syndicales"
     unites = "kg,pièces,bottes,plants,caisses,m²,mètres,hectares,pots,terrines,plaques,paniers,godets,litres,lignes"
 
     # TRANSCRIPTION
-    transcriptor = Transcriptor(model_path=whisper_model_directory)
-    transcription = transcriptor.transcribe(filepath)
-    with open(os.path.join(output_directory, "1_" + filename_without_extension + "_transcription.txt"), "w") as text_file:
-        text_file.write(transcription)
+    if transcribe:
+        transcriptor = Transcriptor(model_path=whisper_model_directory)
+        transcription = transcriptor.transcribe(filepath)
+        with open(os.path.join(output_directory, filename_without_extension + "_transcription.txt"), "w") as text_file:
+            text_file.write(transcription)
+    else:
+        with open(os.path.join(filepath), "r") as text_file:
+            transcription = text_file.read()
 
     # INPUT
     inputs = {
@@ -63,7 +67,12 @@ def main():
     # loop over all files in 'input' directory
     for file in os.listdir(input_directory):
         if isfile(os.path.join(input_directory, file)):
-            run_crew(file, os.path.join(input_directory, file), output_directory, whisper_model_directory)
+            if file.endswith(".mp3"):
+                run_crew(file, os.path.join(input_directory, file), output_directory,
+                         whisper_model_directory, transcribe=True)
+            if file.endswith(".txt"):
+                run_crew(file, os.path.join(input_directory, file), output_directory,
+                         whisper_model_directory, transcribe=False)
 
 if __name__ == '__main__':
     main()

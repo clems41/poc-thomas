@@ -9,8 +9,8 @@ from typing import List
 # llm=LLM(model="cas/ministral-8b-instruct-2410_q4km", base_url="http://localhost:11434")
 # llm=LLM(model="ollama/mistral", base_url="http://localhost:11434")
 llm = LLM(
-     model="mistral/mistral-large-latest",
-     temperature=0
+     model="mistral/mistral-small-latest",
+     temperature=0.2
 )
 
 @CrewBase
@@ -26,35 +26,19 @@ class ShortVersionCrew:
 		super().__init__()
 
 	@agent
-	def transcription_improver(self) -> Agent:
+	def thomas(self) -> Agent:
 		return Agent(
-			config=self.agents_config['transcription_improver'],
-			verbose=True,
-            llm=llm,
-		)
-
-	@agent
-	def task_manager(self) -> Agent:
-		return Agent(
-			config=self.agents_config['task_manager'],
+			config=self.agents_config['thomas'],
 			verbose=True,
             llm=llm,
 		)
 
 	@task
-	def transcription_improvement(self) -> Task:
-		output_file = os.path.join(self.output_directory, "2_" + self.filename + "_transcription_improved.txt")
-		return Task(
-			config=self.tasks_config['transcription_improvement'],
-			output_file="/" + output_file
-		)
-
-	@task
-	def transcription_to_tasks(self) -> Task:
-		output_file = os.path.join(self.output_directory, "3_" + self.filename + "_final.json")
+	def analyse_transcription(self) -> Task:
+		output_file = os.path.join(self.output_directory, self.filename + "_final.json")
 		self.final_file_path = output_file
 		return Task(
-			config=self.tasks_config['transcription_to_tasks'],
+			config=self.tasks_config['analyse_transcription'],
 			output_file="/" + output_file
 		)
 
