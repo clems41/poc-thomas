@@ -14,6 +14,7 @@ def run_crew(filename: str, filepath: str, output_directory: str, whisper_model_
     cultures = "Ail,Artichaut,Asperge,Aubergine,Betterave,Blette,Brocoli,Butternut,Carotte,Chou chinois,Chou frisé,Chou kale,Chou rouge,Chou-fleur,Concombre,Courge musquée,Courge spaghetti,Courgette,Céleri branche,Céleri-rave,Endive,Fenouil,Haricot vert,Laitue,Manioc,Melon,Mâche,Navet,Oignon,Panais,Pastèque,Patate douce,Patidou,Piment,Poireau,Poivron,Pomme de terre,Potimarron,Potiron,Pâtisson,Radis,Roquette,Tomate,Épinard,Engrais verts,Fleurs,Radis noir,Chou-rave,Salade,Mesclun"
     activites = "Production de plant,Travail du sol,Apport de MO (Amender),Fertilisation,Paillage,Bâchage,Semis direct,Plantation,Gestion climatique,Gestion des bioagresseurs,Irrigation,Désherbage,Taille,Palissage,Destruction de culture,Suivi de culture,Récolte,Nettoyage,Livrer,Stockage,Charger / Décharger,Communication / Marketing,Marché,Vente directe,Panier AMAP,Gestion des stocks,Préparation de commande,Comptabilité,Administratif,Planifier,Veille,Achat / Commande,Ranger,Accueil du public,Réparer,Construire,Aménager,Entretenir,Formation,Accompagnement,Production de compost,Gestion des intrants,Réunions,Volailles,Floriculture,Brassiculture,Apiculture,Champignons,Boissons,Conserves,Boulangerie,Verger,Semences,Atelier pédagogique,Auxiliaires de culture,Transformation,Activités syndicales"
     unites = "kg,pièces,bottes,plants,caisses,m²,mètres,hectares,pots,terrines,plaques,paniers,godets,litres,lignes"
+    parcelles = "Jardin 1,Jardin 2,Jardin 3,Serre 1,Serre 2,Serre 3,Tunnel 4,Tunnel 5,Champ 3"
 
     # TRANSCRIPTION
     if transcribe:
@@ -28,6 +29,7 @@ def run_crew(filename: str, filepath: str, output_directory: str, whisper_model_
     # INPUT
     inputs = {
         'transcription': transcription,
+        'parcelles': parcelles,
         'cultures': str(cultures),
         'activites': str(activites),
         'unites': str(unites)
